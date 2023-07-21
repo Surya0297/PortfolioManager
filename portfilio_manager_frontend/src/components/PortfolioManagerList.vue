@@ -119,11 +119,7 @@ export default {
   background: linear-gradient(to bottom right, #836de5, #023B79);
   color: #fff;
   
-  border-collapse: collapse;
-  margin: auto;
-  background: linear-gradient(to bottom right, #836de5, #023B79);
-  color: #fff;
-  height: auto;
+  
 }
 
 .create-button {

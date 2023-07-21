@@ -85,7 +85,7 @@
   };
   </script>
   
-  <style>
+  <style >
   /* Your component's CSS styles go here */
   .table-container {
     display: flex;
@@ -99,11 +99,7 @@
     border-collapse: collapse;
     background: linear-gradient(to bottom right, #836de5, #023B79);
     color: #fff;
-    width: 60%;
-    border-collapse: collapse;
-    margin: auto;
-    background: linear-gradient(to bottom right, #836de5, #023B79);
-    color: #fff;
+    
   }
   
   h1 {

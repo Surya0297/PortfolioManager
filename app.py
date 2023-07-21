@@ -247,7 +247,7 @@ def create_task():
     return jsonify({'message': 'Task created successfully!', '_id': str(inserted_id), 'task_id': data['task_id']}), 201
 
 # API endpoint to update a Task
-@app.route('/tasks/<string:task_id>', methods=['PUT'])
+@app.route('/tasks/update/<string:task_id>', methods=['PUT'])
 def update_task(task_id):
     data = request.json
     existing_task = tasks_col.find_one({'task_id': task_id})
@@ -282,6 +282,11 @@ def get_task(task_id):
 def get_tasks_by_project(project_id):
     tasks = list(tasks_col.find({'project_id': project_id}, {'_id': 0}))
     return json_util.dumps(tasks, default=str), 200
+
+@app.route('/tasks', methods=['GET'])
+def get_all_tasks():
+    tasks = list(tasks_col.find({}, {'_id': 0}))
+    return jsonify(tasks), 200
 
 if __name__ == '__main__':
     app.run(debug=True)
