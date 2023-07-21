@@ -4,20 +4,20 @@
     <div class="options-grid">
       <!-- Option 1 -->
       <div class="option" @click="navigateToPage('/portfolio_managers')">
-        <img src="../image/ViewAllManager.png" alt="Option 1" />
-        <span>View All Manager</span>
+        <i class="fas fa-users"></i> <!-- Font Awesome icon for "users" -->
+        <span>View All Managers</span>
       </div>
 
       <!-- Option 2 -->
       <div class="option" @click="navigateToPage('/projects')">
-        <img src="path/to/option2-image.jpg" alt="Option 2" />
-        <span>Option 2</span>
+        <i class="fas fa-project-diagram"></i> <!-- Font Awesome icon for "project-diagram" -->
+        <span>View All Projects</span>
       </div>
 
       <!-- Option 3 -->
-      <div class="option" @click="navigateToPage('/option3')">
-        <img src="path/to/option3-image.jpg" alt="Option 3" />
-        <span>Option 3</span>
+      <div class="option" @click="navigateToPage('/tasks')">
+        <i class="fas fa-tasks"></i> <!-- Font Awesome icon for "tasks" -->
+        <span>View All Tasks</span>
       </div>
 
       <!-- Add more options as needed -->
@@ -50,6 +50,7 @@ h1 {
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 20px;
+  color:#fff; /* Custom color for the heading */
 }
 
 .options-grid {
@@ -63,18 +64,26 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
+  border: 1px solid #ccc; /* Border around each option */
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #fff; /* Background color for each option */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+  transition: transform 0.2s ease-in-out; /* Add a smooth transform effect on hover */
 }
 
-.option img {
-  width: 100px; /* Adjust the image size as needed */
-  height: 100px; /* Adjust the image size as needed */
-  object-fit: cover; /* Ensure the image maintains aspect ratio */
-  border-radius: 50%;
+.option:hover {
+  transform: scale(1.05); /* Scale up the option on hover */
+}
+
+.option i {
+  font-size: 36px; /* Adjust the icon size as needed */
   margin-bottom: 10px;
 }
 
 .option span {
   font-size: 16px;
   font-weight: bold;
+  color: #333; /* Custom color for the option text */
 }
 </style>

@@ -1,13 +1,23 @@
 <template>
     <div class="update-project-container">
       <h1>Update Project</h1>
-      <form @submit.prevent="updateProject">
-        <!-- Project Name -->
+      <form @submit.prevent="updateProject" class="update-project-form">
         <div>
-          <label for="project_name">Project Name:</label>
-          <input type="text" id="project_name" v-model="form.project_name" required />
+          <label for="name">Name:</label>
+          <input type="text" id="name" v-model="form.name" required />
         </div>
-        <!-- Project Status -->
+        <div>
+          <label for="description">Description:</label>
+          <textarea id="description" v-model="form.description" required></textarea>
+        </div>
+        <div>
+          <label for="start_date">Start Date:</label>
+          <input type="date" id="start_date" v-model="form.start_date" required />
+        </div>
+        <div>
+          <label for="end_date">End Date:</label>
+          <input type="date" id="end_date" v-model="form.end_date" required />
+        </div>
         <div>
           <label for="status">Status:</label>
           <select id="status" v-model="form.status" required>
@@ -16,15 +26,9 @@
             <option value="Completed">Completed</option>
           </select>
         </div>
-        <!-- Project Start Date -->
         <div>
-          <label for="start_date">Start Date:</label>
-          <input type="date" id="start_date" v-model="form.start_date" required />
-        </div>
-        <!-- Project Description -->
-        <div>
-          <label for="description">Description:</label>
-          <textarea id="description" v-model="form.description" required></textarea>
+          <label for="manager_id">Manager ID:</label>
+          <input type="text" id="manager_id" v-model="form.manager_id" required />
         </div>
         <div>
           <button type="submit">Update</button>
@@ -41,19 +45,23 @@
     data() {
       return {
         form: {
-          project_name: '',
-          status: 'Not Started',
-          start_date: '',
+          name: '',
           description: '',
+          start_date: '',
+          end_date: '',
+          status: '',
+          manager_id: '',
         },
       };
     },
     created() {
-      this.fetchProject();
+      const projectId = this.$route.params.id;
+      if (projectId) {
+        this.fetchProject(projectId);
+      }
     },
     methods: {
-      fetchProject() {
-        const projectId = this.$route.params.id;
+      fetchProject(projectId) {
         axios
           .get(`http://localhost:5000/projects/${projectId}`)
           .then((response) => {
@@ -79,9 +87,6 @@
   };
   </script>
   
-  <!-- Styles... -->
-  
-  
   <style>
   /* Your component's CSS styles go here */
   .update-project-container {
@@ -95,60 +100,56 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: center;
   }
   
-  h1 {
+  .update-project-container h1 {
     font-size: 24px;
     font-weight: bold;
     margin-bottom: 20px;
   }
   
-  form {
-    display: flex;
-    flex-direction: column;
+  .update-project-form {
+    display: grid;
+    gap: 10px;
   }
   
-  label {
+  .update-project-form label {
     font-weight: bold;
-    margin-bottom: 5px;
+    color: #fff;
   }
   
-  input[type="text"],
-  select,
-  textarea,
-  input[type="date"] {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    margin-bottom: 15px;
-    font-size: 16px;
-  }
-  
-  select {
+  .update-project-form input,
+  .update-project-form select,
+  .update-project-form textarea {
     width: 100%;
+    padding: 5px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    background-color: aliceblue;
+    border-radius: 4px;
   }
   
-  textarea {
+  .update-project-form textarea {
     resize: vertical;
   }
   
-  button {
-    padding: 10px;
-    background-color: #00418a;
+  .update-project-form button {
+    background-color: #007bff;
     color: #fff;
+    padding: 10px 20px;
     border: none;
     border-radius: 4px;
+    font-size: 16px;
     cursor: pointer;
-    font-weight: bold;
-    transition: background-color 0.2s ease;
   }
   
-  button:hover {
+  .update-project-form button:hover {
     background-color: #0056b3;
   }
   
-  button:active {
+  .update-project-form button:active {
     background-color: #00418a;
   }
   </style>
