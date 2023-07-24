@@ -35,3 +35,14 @@
   </li>
 </ul>
 </p>
+<h1>
+  Installation
+</h1>
+<p>
+  1.Clone the Repository:
+  git clone https://github.com/Surya0297/PortfolioManager.git
+  2. Navigate The ProjectDirectory:
+  cd PortfolioManager
+  3.Install the required dependencies:
+  npm install
+</p>
