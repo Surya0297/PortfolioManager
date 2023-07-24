@@ -1,5 +1,8 @@
 <template>
   <div class="update-manager-container">
+    <router-link to="/admin/dashboard" class="home-icon">
+              <i class="fas fa-home" style="color: white;"></i>
+                </router-link>
     <h1>Update Portfolio Manager</h1>
     <form @submit.prevent="updateManager">
       <div class="form-group">
@@ -18,19 +21,12 @@
         </select>
       </div>
       <div class="form-group">
-        <label for="role">Role:</label>
-        <select id="role" v-model="form.role" required>
-          <option value="Administrator">Administrator</option>
-          <option value="Viewer">Viewer</option>
-        </select>
-      </div>
-      <div class="form-group">
         <label for="bio">Bio:</label>
         <textarea id="bio" v-model="form.bio" required></textarea>
       </div>
       <div class="form-group">
-        <label for="start_date">Start Date:</label>
-        <input type="date" id="start_date" v-model="form.start_date" required />
+        <label for="joining_date">Joining Date:</label>
+        <input type="date" id="joining_date" v-model="form.joining_date" required />
       </div>
       <div class="form-group">
         <button type="submit">Update</button>
@@ -39,11 +35,11 @@
   </div>
 </template>
 
-<style>
+<style scoped>
 /* Your component's CSS styles go here */
 .update-manager-container {
   max-width: 500px;
-  margin: auto;
+  margin: 100px auto;
   padding: 20px;
   border: 1px solid #ccc;
   background: linear-gradient(to bottom right, #836de5, #023B79);
@@ -126,9 +122,8 @@ form {
           name: '',
           username: '',
           status: '',
-          role: '',
           bio: '',
-          start_date: '',
+          joining_date: '',
         },
       };
     },

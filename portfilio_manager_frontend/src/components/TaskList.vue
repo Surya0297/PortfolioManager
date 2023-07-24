@@ -6,6 +6,9 @@
         <thead>
             <tr>
                 <th colspan="8" align="center">
+                  <router-link to="/admin/dashboard" class="home-icon">
+              <i class="fas fa-home" style="color: white;"></i>
+                </router-link>
                     <h1>Task List</h1>
                 </th>
             </tr>
@@ -119,7 +122,9 @@ h1 {
 }
 
 .task-list-table {
+  margin-top:100px;
   width: 60%;
+  border-radius: 10px;
   border-collapse: collapse;
   color: #fff;
   background: linear-gradient(to bottom right, #836de5, #023B79);
