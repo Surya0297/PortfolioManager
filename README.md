@@ -39,10 +39,10 @@
   Installation
 </h1>
 <p>
-  1.Clone the Repository:
-  git clone https://github.com/Surya0297/PortfolioManager.git
-  2. Navigate The ProjectDirectory:
-  cd PortfolioManager
-  3.Install the required dependencies:
-  npm install
+  1.Clone the Repository: </br>
+  git clone https://github.com/Surya0297/PortfolioManager.git</br>
+  2. Navigate The ProjectDirectory:</br>
+  cd PortfolioManager</br>
+  3.Install the required dependencies:</br>
+  npm install</br>
 </p>
