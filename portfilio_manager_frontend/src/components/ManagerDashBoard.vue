@@ -1,33 +1,14 @@
 <template>
   <div class="admin-dashboard">
-    <h1>Welcome, Admin</h1>
+    <h1>Welcome, Portfolio Manager</h1>
+
+    <AssignedProjectsList :managerId="managerId" />
+
     <div class="options-grid">
       <!-- Option 1 -->
-      <div class="option" @click="navigateToPage('/portfolio_managers')">
+      <div class="option" @click="navigateToPage('/manager/assigned-projects')">
         <i class="fas fa-users"></i> <!-- Font Awesome icon for "users" -->
-        <span>View All Managers</span>
-      </div>
-
-      <!-- Option 2 -->
-      <div class="option" @click="navigateToPage('/projects')">
-        <i class="fas fa-project-diagram"></i> <!-- Font Awesome icon for "project-diagram" -->
-        <span>View All Projects</span>
-      </div>
-
-      <!-- Option 3 -->
-      <div class="option" @click="navigateToPage('/tasks')">
-        <i class="fas fa-tasks"></i> <!-- Font Awesome icon for "tasks" -->
-        <span>View All Tasks</span>
-      </div>
-
-      <!-- Option 4 -->
-      <div class="option" @click="navigateToPage('/resources')">
-        <i class="fa-solid fa-database" style="color: #eff1f5;"></i>        <span>View All Resources</span>
-      </div>
-
-      <!-- Option 5 -->
-      <div class="option" @click="navigateToPage('/projects/available')">
-        <i class="fa-solid fa-hand-holding-hand"></i>        <span>Assign Projects</span>
+        <span>View All Assigned Projects</span>
       </div>
 
        <!-- Option 6 -->
@@ -42,11 +23,39 @@
 </template>
 
 <script>
+import jwtDecode from 'jwt-decode';
+
 export default {
   name: 'AdminDashboard',
+  data() {
+    return {
+      managerId: null,
+    };
+  },
+  created() {
+    this.fetchManagerId();
+  },
   methods: {
     navigateToPage(path) {
       this.$router.push(path);
+    },
+  
+  fetchManagerId() {
+      // Get the JWT token from local storage (you might have different storage mechanism)
+      const token = localStorage.getItem('accessToken');
+
+      if (token) {
+        try {
+      // Decode the JWT token to get the manager's ID from the payload
+      const decodedToken = jwtDecode(token);
+      this.managerId = decodedToken.sub;
+      console.log(this.managerId);
+    } catch (error) {
+      console.error('Error decoding JWT token:', error);
+    }
+  } else {
+    console.log('No JWT token found in local storage');
+  }
     },
   },
 };

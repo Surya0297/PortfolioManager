@@ -1,3 +1,4 @@
+
 <template>
     <div class="login-page">
       <h1>Login</h1>
@@ -16,6 +17,7 @@
   </template>
   
   <script>
+  import axios from 'axios';
   export default {
     name: 'LoginPage',
     data() {
@@ -25,21 +27,36 @@
       };
     },
     methods: {
-      loginUser() {
-        const adminUsername = 'admin';
+      async loginUser() {
+      const adminUsername = 'admin';
       const adminPassword = 'admin123';
 
       if (this.username === adminUsername && this.password === adminPassword) {
-        // If the username and password match, redirect to the admin dashboard page
+        // If the username and password match the admin credentials, redirect to the admin dashboard page
         this.$router.push('/admin/dashboard');
-      } else {
-        // If the username and password don't match, display an error message (for demonstration purposes)
-        alert('Invalid username or password. Please try again.');
-      }
         this.username = '';
         this.password = '';
-      },
+      } else {
+        // If the credentials are not admin's, send a request to the backend API for manager authentication
+        try {
+          const response = await axios.post('http://localhost:5000/login', {
+            username: this.username,
+            password: this.password,
+          });
+          const accessToken = response.data.access_token;
+          // Save the access token in localStorage or Vuex store for further authenticated requests
+          localStorage.setItem('accessToken', accessToken);
+          // Redirect to the manager dashboard page upon successful login
+          this.$router.push('/manager/dashboard');
+          this.username = '';
+          this.password = '';
+        } catch (error) {
+          alert('Invalid username or password. Please try again.');
+          console.error('Error logging in:', error);
+        }
+      }
     },
+  },
   };
   </script>
   
@@ -51,7 +68,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   display: flex;
-  background-color: #fff;
+  
   opacity: 0.9; 
   width: 15%;
   border-radius: 10px;
@@ -59,6 +76,8 @@
   align-items: center;
   padding: 20px;
   justify-content: center; /* Center horizontally */
+  background: linear-gradient(to bottom right, #836de5, #023B79);
+
 }
 
 
@@ -69,7 +88,7 @@
   h1 {
     font-size: 24px;
     margin-bottom: 20px;
-    color: #007bff;
+    color:#00418a;
   }
   
   .form-group {
@@ -80,7 +99,7 @@
   
   label {
     font-weight: bold;
-    color: #007bff;
+    color:#00418a;
   }
   body {
     background-image: url("../image/Home.png");
@@ -97,7 +116,7 @@
   
   button {
     padding: 10px 20px;
-    background-color: #007bff;
+    background-color: #00418a;
     color: #fff;
     border: none;
     border-radius: 4px;

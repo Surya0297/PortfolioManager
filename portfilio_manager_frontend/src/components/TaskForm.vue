@@ -2,6 +2,9 @@
 
 <template>
     <div class="task-form-container">
+      <router-link to="/admin/dashboard" class="home-icon">
+              <i class="fas fa-home" style="color: white;"></i>
+                </router-link>
       <h1>{{ isUpdating ? 'Update Task' : 'Create New Task' }}</h1>
       <form @submit.prevent="submitForm">
         <div>

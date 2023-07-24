@@ -2,6 +2,8 @@
   
   <template>
     <div class="create-manager-container">
+      <router-link to="/admin/dashboard" class="home-icon">
+        <i class="fas fa-home" style="color: white;"></i>    </router-link>
       <h1>Create New Portfolio Manager</h1>
       <form @submit.prevent="createManager" class="create-manager-form">
         <div>
@@ -20,19 +22,12 @@
           </select>
         </div>
         <div>
-          <label for="role">Role:</label>
-          <select id="role" v-model="form.role" required>
-            <option value="Administrator">Administrator</option>
-            <option value="Viewer">Viewer</option>
-          </select>
-        </div>
-        <div>
           <label for="bio">Bio:</label>
           <textarea id="bio" v-model="form.bio" required></textarea>
         </div>
         <div>
-          <label for="start_date">Start Date:</label>
-          <input type="date" id="start_date" v-model="form.start_date" required />
+          <label for="joining_date">Joining Date:</label>
+          <input type="date" id="joining_date" v-model="form.joining_date" required />
         </div>
         <div>
           <label for="password">Password:</label>
@@ -56,29 +51,58 @@
           name: '',
           username: '',
           status: '',
-          role: '',
           bio: '',
-          start_date: '',
+          joining_date: '',
           password: '',
         },
       };
     },
     methods: {
       createManager() {
+        const generatedPassword = this.generateRandomPassword();
+        console.log(generatedPassword)
+        this.form.password = generatedPassword;
+        
         axios
           .post('http://localhost:5000/portfolio_managers', this.form)
           .then((response) => {
             // Handle the successful response, e.g., show a success message or redirect to the Portfolio Manager list page
             console.log('Portfolio Manager created successfully:', response.data);
+            this.sendPasswordEmail(this.form.username, generatedPassword);
+
             // Redirect the user to the Portfolio Manager list page
             this.$router.push('/portfolio_managers');
 
           })
           .catch((error) => {
             // Handle errors, e.g., show an error message to the user
+            if (error.response && error.response.data && error.response.data.message) {
+        // Display the error message to the user
+        console.log(error.response.data.message);
+        alert('Username already exists. Please choose a different username.');
+            }
             console.error('Error creating Portfolio Manager:', error);
           });
       },
+      generateRandomPassword() {
+      // Function to generate a random password (You can customize this as per your requirement)
+      const chars =
+        'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+      let password = '';
+      for (let i = 0; i < 8; i++) {
+        const randomIndex = Math.floor(Math.random() * chars.length);
+        password += chars.charAt(randomIndex);
+      }
+      console.log(password)
+      return password;
+    },
+    sendPasswordEmail(email, password) {
+      // Function to send an email with the generated password to the manager's email
+      // Implement your email sending logic here (using an email service or backend endpoint)
+      // For demonstration purposes, we'll simply log the email and password here.
+      console.log('Sending email to:', email);
+      console.log('Generated password:', password);
+    },
     },
   };
   </script>

@@ -1,10 +1,13 @@
 <template>
     <div class="update-project-container">
+      <router-link to="/admin/dashboard" class="home-icon">
+              <i class="fas fa-home" style="color: white;"></i>
+                </router-link>
       <h1>Update Project</h1>
       <form @submit.prevent="updateProject" class="update-project-form">
         <div>
           <label for="name">Name:</label>
-          <input type="text" id="name" v-model="form.name" required />
+          <input type="text" id="name" v-model="form.project_name" required />
         </div>
         <div>
           <label for="description">Description:</label>
@@ -15,8 +18,8 @@
           <input type="date" id="start_date" v-model="form.start_date" required />
         </div>
         <div>
-          <label for="end_date">End Date:</label>
-          <input type="date" id="end_date" v-model="form.end_date" required />
+          <label for="due_date">Due Date:</label>
+          <input type="date" id="due_date" v-model="form.due_date" required />
         </div>
         <div>
           <label for="status">Status:</label>
@@ -48,20 +51,22 @@
           name: '',
           description: '',
           start_date: '',
-          end_date: '',
+          due_date: '',
           status: '',
           manager_id: '',
         },
       };
     },
     created() {
-      const projectId = this.$route.params.id;
+      const projectId = this.$route.params.projectId;
+      console.log(projectId)
       if (projectId) {
         this.fetchProject(projectId);
       }
     },
     methods: {
       fetchProject(projectId) {
+        
         axios
           .get(`http://localhost:5000/projects/${projectId}`)
           .then((response) => {
@@ -72,7 +77,7 @@
           });
       },
       updateProject() {
-        const projectId = this.$route.params.id;
+        const projectId = this.$route.params.projectId;
         axios
           .put(`http://localhost:5000/projects/${projectId}`, this.form)
           .then((response) => {
