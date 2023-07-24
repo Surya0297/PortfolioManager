@@ -56,5 +56,68 @@
     --http://localhost:8080
 </br>
 </p>
+<h1>
+ API Endpoints
+</h1>
+<p>
+<ul>
+  <li>
+   /manager/login: POST - Login endpoint for managers. Expects username and password fields in the request body.
+  </li>
+  <li>
+    /manager/projects/:manager_id: GET - Retrieve a list of projects assigned to a manager.
+  </li>
+   <li>
+    /projects/:project_id: GET - Retrieve project details by project ID.
+   <li>
+    /projects/:project_id: PUT - Update project details. Expects project details in the request body.
+ </li>
+  <li>
+   /tasks/project/:project_id: GET - Retrieve tasks for a specific project.
+  </li>
+  <li>
+   /tasks/:task_id: PUT - Update task details. Expects task details in the request body.
+  </li>
+</ul>
+</p>
+<h1>
+Technologies Used
+</h1>
+<p>
+<ul>
+  <li>
+   Vue.js: Frontend JavaScript framework for building user interfaces.
+  </li>
+  <li>
+    MongoDB: NoSQL database for data storage.
+  </li>
+   <li>
+    Axios: Promise-based HTTP client for making API requests.
+   <li>
+   JWT (JSON Web Tokens): For user authentication and authorization.
+ </li>
+  <li>
+   HTML
+  </li>
+  <li>
+  CSS
+  </li>
+  <li>
+  Python
+  </li>
+</ul>
+</p>
+<h1>
+  Contributing
+</h1>
+<p>
+  Contributions are welcome! If you find any issues or have suggestions for improvements, please feel free to create a pull request or raise an issue on the GitHub repository.
+</p>
+<h1>
+  Entity Relationship
+</h1>
+<img src="ER_Diagram_and_MockUI/PortfolioManager_ER_Diagram.png">
+
+
 
 
