@@ -46,3 +46,15 @@
   3.Install the required dependencies:</br>
     --npm install</br>
 </p>
+<h1>
+  Usage
+</h1>
+<p>
+  1.Run the development server:</br>
+    --npm run serve</br>
+  2.Open the application in your web browser:</br>
+    --http://localhost:8080
+</br>
+</p>
+
+
