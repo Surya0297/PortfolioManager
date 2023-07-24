@@ -118,6 +118,14 @@ Technologies Used
 </h1>
 <img src="ER_Diagram_and_MockUI/PortfolioManager_ER_Diagram.png">
 
-
+<h1>
+ Screenshots
+</h1>
+<h2>Landiong Page</h2>
+<img src="ER_Diagram_and_MockUI/PortfolioManager_ER_Diagram.png">
+<h2>Admin DashBoard</h2>
+<img src="ER_Diagram_and_MockUI/PortfolioManager_ER_Diagram.png">
+<h2>Managers DashBoard</h2>
+<img src="ER_Diagram_and_MockUI/PortfolioManager_ER_Diagram.png">
 
 
