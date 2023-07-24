@@ -121,7 +121,7 @@ Technologies Used
 <h1>
  Screenshots
 </h1>
-<h2>Landiong Page</h2>
+<h2>Landing Page</h2>
 <img src="ER_Diagram_and_MockUI/PortfolioManager_ER_Diagram.png">
 <h2>Admin DashBoard</h2>
 <img src="ER_Diagram_and_MockUI/PortfolioManager_ER_Diagram.png">
